@@ -1,0 +1,508 @@
+
+        * { box-sizing: border-box; }
+        body {
+            background: linear-gradient(160deg, #6a0dad 0%, #9b4de0 35%, #c77dff 65%, #e0aaff 100%);
+            color: #333;
+            font-family: 'VT323', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #game-container {
+            width: 800px;
+            height: 600px;
+            background-image: url(images/background.png);
+            background-size: cover;
+            border: 6px solid #ffd700;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 0 40px rgba(255,215,0,0.3), 8px 8px 0px #111;
+            overflow: hidden;
+        }
+        .screen { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+        .active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+        /* ── MENÚ ── */
+        #creditos {
+            position: absolute;
+            bottom: 12px;
+            left: 14px;
+            z-index: 10;
+            color: rgba(255,255,255,0.75);
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: left;
+            font-family: inherit;
+            text-shadow: 1px 1px 2px #000;
+            pointer-events: none;
+        }
+        #menu-overlay {
+            background: rgba(10,0,25,0.82);
+            width: 100%; height: 100%;
+            position: absolute; top:0; left:0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 0;
+        }
+        h1 {
+            font-size: 56px;
+            color: #ffd700;
+            text-shadow: 3px 3px 0 #7b00d4, 6px 6px 0 #000;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+        .menu-subtitle {
+            font-size: 22px;
+            color: #b388ff;
+            margin-bottom: 28px;
+            letter-spacing: 2px;
+        }
+
+        /* ── BOTONES ── */
+        button {
+            background: linear-gradient(180deg, #7b2ff7 0%, #4a00c4 100%);
+            border: 3px solid #ffd700;
+            color: #ffd700;
+            padding: 12px 36px;
+            font-size: 26px;
+            font-family: 'VT323', monospace;
+            margin: 7px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 #111;
+            transition: all 0.08s;
+            border-radius: 6px;
+            letter-spacing: 2px;
+            min-width: 200px;
+        }
+        button:hover {
+            background: linear-gradient(180deg, #a855f7 0%, #6d28d9 100%);
+            transform: translate(-2px,-2px);
+            box-shadow: 6px 6px 0 #111;
+            color: #fff;
+        }
+        button:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #111; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .close-btn {
+            position: absolute; top: 16px; right: 16px;
+            background: linear-gradient(180deg,#e53935,#b71c1c);
+            border-color: #ff8a80; color: #fff;
+            padding: 4px 14px; font-size: 22px;
+            min-width: unset;
+        }
+
+        /* ── OPCIONES ── */
+        #options {
+            background: rgba(10,0,25,0.88);
+        }
+        h2 {
+            font-size: 38px;
+            color: #ffd700;
+            text-shadow: 2px 2px 0 #7b00d4;
+            text-decoration: none;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 6px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* ── RULETA ── */
+        #roulette {
+            background: rgba(10,0,25,0.80);
+        }
+        #roulette-title {
+            font-size: 36px;
+            color: #ffd700;
+            text-shadow: 2px 2px 0 #7b00d4;
+            margin-bottom: 14px;
+            letter-spacing: 3px;
+        }
+        #roulette-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Marco decorativo de la ruleta */
+        #roulette-frame {
+            width: 284px; height: 284px;
+            background: radial-gradient(circle, #2d0060 60%, #0a0018 100%);
+            border: 5px solid #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 24px rgba(255,215,0,0.5), inset 0 0 20px rgba(0,0,0,0.6);
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        #roulette-wheel {
+            width: 260px; height: 260px;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 3.5s cubic-bezier(0.17, 0.67, 0.12, 1.0);
+            position: relative;
+        }
+        /* Puntero arriba */
+        #roulette-pointer {
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 22px solid #ffd700;
+            filter: drop-shadow(0 2px 4px #000);
+            z-index: 20;
+        }
+        /* Botón girar */
+        #spin-btn {
+            margin-top: 16px;
+            font-size: 28px;
+            padding: 10px 40px;
+            background: linear-gradient(180deg,#ffd700,#b8860b);
+            color: #1a0033;
+            border-color: #fff8;
+            text-shadow: none;
+        }
+        #spin-btn:hover {
+            background: linear-gradient(180deg,#ffe44d,#d4a017);
+            color: #000;
+        }
+        /* Materia seleccionada */
+        #selected-subject-label {
+            font-size: 22px;
+            color: #b388ff;
+            margin-top: 8px;
+            min-height: 28px;
+            letter-spacing: 1px;
+        }
+
+        /* ── BATALLA ── */
+        #game { background: rgba(10,0,25,0.55); }
+
+        .battle-area {
+            display: flex;
+            justify-content: space-between;
+            width: 92%;
+            margin-top: 14px;
+            background: rgba(255,255,255,0.93);
+            border: 4px solid #ffd700;
+            border-radius: 10px;
+            padding: 12px 18px;
+            box-shadow: 4px 4px 0 #111;
+        }
+        .character-box { text-align: center; width: 46%; }
+        .sprite-container { display: flex; justify-content: center; margin-bottom: 6px; }
+        .sprite {
+            width: 90px; height: 100px;
+            background: #dde;
+            border: 3px solid #444;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            box-shadow: 3px 3px 0 #888;
+            overflow: hidden;
+        }
+        #personaje { width: 68px; height: 100px; image-rendering: pixelated; }
+        /* #boss-sprite-imagen styles moved to animation section below */
+        .health-bar {
+            background: transparent url(images/Pixelated-Heart-PNG-Clipart.png) repeat-x;
+            background-size: 28px 28px;
+            height: 28px;
+            margin-bottom: 5px;
+            display: inline-block;
+            transition: width 0.3s;
+        }
+        h3 {
+            font-size: 22px;
+            margin: 4px 0 0 0;
+            color: #1a0033;
+        }
+        .boss-name-label {
+            font-size: 14px;
+            color: #555;
+            margin: 0;
+        }
+
+        #question-area {
+            margin-top: 12px;
+            width: 92%;
+            background: rgba(10,0,40,0.92);
+            color: white;
+            padding: 16px 18px;
+            border: 3px solid #7b2ff7;
+            border-radius: 10px;
+            box-shadow: 4px 4px 0 #111, 0 0 16px rgba(123,47,247,0.4);
+        }
+        #turn-indicator {
+            text-align: center;
+            font-size: 16px;
+            color: #1dd1a1;
+            letter-spacing: 1px;
+            min-height: 18px;
+            margin-bottom: 2px;
+        }
+        #question-text {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 14px;
+            color: #ffd700;
+            min-height: 30px;
+            line-height: 1.2;
+        }
+        .answers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .answers button {
+            font-size: 18px;
+            padding: 10px 8px;
+            margin: 0;
+            min-width: unset;
+            background: linear-gradient(180deg,#2d1b69,#1a0033);
+            border-color: #b388ff;
+            color: #e0d0ff;
+            letter-spacing: 0;
+        }
+        .answers button:hover {
+            background: linear-gradient(180deg,#5c3baa,#3b1f8a);
+            color: #fff;
+            border-color: #ffd700;
+        }
+
+        /* ── FLASH FEEDBACK ── */
+        .flash-green { animation: flashG 0.5s; }
+        .flash-red   { animation: flashR 0.5s; }
+        @keyframes flashG { 0%{box-shadow:0 0 60px #1dd1a1 inset;} 100%{} }
+        @keyframes flashR { 0%{box-shadow:0 0 60px #ff4444 inset;} 100%{} }
+
+        /* ── BOSS SPRITE container fix ── */
+        #boss-sprite { background: transparent !important; border: none !important; box-shadow: none !important; width: 80px; height: 100px; }
+
+        /* ── ANIMACIONES PROFESOR ── */
+        @keyframes profesorFlotando {
+            0%   { transform: scaleX(-1) translateY(0px); }
+            50%  { transform: scaleX(-1) translateY(-5px); }
+            100% { transform: scaleX(-1) translateY(0px); }
+        }
+        @keyframes profesorRespira {
+            0%   { transform: scaleX(-1) scaleY(1); }
+            40%  { transform: scaleX(-1) scaleY(1.03); }
+            100% { transform: scaleX(-1) scaleY(1); }
+        }
+        @keyframes auraBoss {
+            0%   { box-shadow: 0 0 10px rgba(180,100,255,0.4), 0 0 20px rgba(255,215,0,0.2); }
+            50%  { box-shadow: 0 0 20px rgba(180,100,255,0.8), 0 0 35px rgba(255,215,0,0.5); }
+            100% { box-shadow: 0 0 10px rgba(180,100,255,0.4), 0 0 20px rgba(255,215,0,0.2); }
+        }
+        @keyframes profesorAtaca {
+            0%   { transform: scaleX(-1) translateX(0); }
+            30%  { transform: scaleX(-1) translateX(-10px) rotate(-4deg); }
+            60%  { transform: scaleX(-1) translateX(5px) rotate(2deg); }
+            100% { transform: scaleX(-1) translateX(0); }
+        }
+        #boss-sprite-imagen {
+            width: 80px; height: 100px;
+            transform: scaleX(-1);
+            image-rendering: pixelated;
+            animation: profesorFlotando 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(123,47,247,0.6));
+        }
+        #boss-sprite-imagen.atacando {
+            animation: profesorAtaca 0.5s ease-in-out;
+        }
+        .sprite#boss-sprite {
+            animation: auraBoss 2s ease-in-out infinite;
+            border-radius: 8px;
+        }
+
+        /* Jugador también flota suavemente */
+        @keyframes jugadorFlota {
+            0%   { transform: translateY(0px); }
+            50%  { transform: translateY(-4px); }
+            100% { transform: translateY(0px); }
+        }
+        #personaje {
+            animation: jugadorFlota 2s ease-in-out infinite 0.5s;
+        }
+        @keyframes jugadorTiembla {
+            0%   { transform: translateX(0); }
+            20%  { transform: translateX(-6px); }
+            40%  { transform: translateX(6px); }
+            60%  { transform: translateX(-4px); }
+            80%  { transform: translateX(4px); }
+            100% { transform: translateX(0); }
+        }
+        #personaje.daniado {
+            animation: jugadorTiembla 0.4s ease-in-out;
+        }
+
+        /* ── LOGIN ── */
+        #login-box {
+            background: rgba(10,0,25,0.88);
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+            padding: 24px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            width: 300px;
+            box-shadow: 4px 4px 0 #111;
+        }
+        #login-box input, .styled-input, .styled-select, textarea.styled-input {
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+            padding: 8px 10px;
+            margin: 6px 0;
+            border-radius: 5px;
+            border: 2px solid #7b2ff7;
+            background: #1a0033;
+            color: #ffd700;
+            outline: none;
+        }
+        #login-box input::placeholder, .styled-input::placeholder { color: #b388ff; }
+        #login-msg {
+            min-height: 22px;
+            color: #ff8a80;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 4px;
+        }
+        #current-user-label { color: #ffd700; }
+        .user-bar {
+            font-size: 16px;
+            color: #b388ff;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        /* ── FORMULARIOS GENERALES (vs jugador / torneo / IA) ── */
+        .form-panel {
+            width: 88%;
+            max-height: 78%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .form-row { display:flex; flex-direction:column; width: 260px; margin: 6px 0; }
+        .form-row label { font-size: 16px; color:#b388ff; margin-bottom:3px; letter-spacing:1px; }
+        textarea.styled-input { width: 340px; height: 90px; resize: vertical; }
+        .hint-text { font-size: 13px; color:#b388ff; max-width: 340px; text-align:center; line-height:1.4; margin: 4px 0 8px 0; }
+        details.ai-advanced { color:#ffd700; font-size:16px; margin: 6px 0; }
+        details.ai-advanced summary { cursor:pointer; }
+
+        /* ── TORNEO ── */
+        #tournament-players-list { display:flex; flex-direction:column; align-items:center; }
+        #bracket-list {
+            width: 90%;
+            max-height: 260px;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.35);
+            border: 2px solid #7b2ff7;
+            border-radius: 8px;
+            padding: 8px 14px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .bracket-round strong { color: #ffd700; }
+        .bracket-round ul { margin: 4px 0 10px 0; padding-left: 18px; }
+        .bracket-round li { color: #e0d0ff; margin-bottom: 2px; }
+        .bracket-round li.current-match { color: #1dd1a1; font-weight: bold; }
+        #bracket-current-match {
+            font-size: 24px;
+            color: #ffd700;
+            text-shadow: 2px 2px 0 #7b00d4;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        #champion-banner { font-size: 26px; color: #ffd700; text-align:center; margin-bottom: 10px; }
+
+        /* ── IA DOCUMENTOS ── */
+        #ai-preview { width: 90%; max-height: 200px; overflow-y:auto; background: rgba(0,0,0,0.35); border: 2px solid #7b2ff7; border-radius: 8px; padding: 6px 14px; margin: 8px 0; font-size: 15px; text-align:left; }
+        .ai-q-item { margin-bottom: 10px; border-bottom: 1px dashed #7b2ff7; padding-bottom: 6px; }
+        .ai-q-item .q-title { color: #ffd700; }
+        .ai-q-item .q-opt { color: #e0d0ff; }
+        .ai-q-item .q-opt.correct { color: #1dd1a1; }
+        #ai-status { min-height: 22px; font-size: 16px; color: #b388ff; text-align:center; margin: 4px 0; }
+        input[type="file"].styled-input { padding: 6px; }
+        input[type="number"].styled-input { width: 80px; text-align:center; }
+
+        /* ── TABLA DE PUNTUACIÓN ── */
+        #scoreboard-list { width: 88%; max-height: 340px; overflow-y: auto; }
+        .score-table { width: 100%; border-collapse: collapse; font-size: 18px; color: #e0d0ff; }
+        .score-table th { color: #ffd700; border-bottom: 2px solid #7b2ff7; padding: 6px 8px; text-align: left; }
+        .score-table td { padding: 5px 8px; border-bottom: 1px solid rgba(123,47,247,0.4); }
+        .score-table tr:first-child td { color: #ffd700; }
+        /* Academia Pixel v8: responsive y puntuación por preguntas (sin corazones). */
+body { min-height: 100vh; height: auto; padding: 12px; }
+#game-container { width: min(800px, 100%); min-height: 600px; }
+.screen.active { display: flex; }
+#menu-overlay { overflow-y:auto; padding: 16px 12px; }
+#menu h1 { font-size: clamp(27px, 5vw, 46px); margin: 0; text-align:center; }
+#menu .menu-subtitle { margin-bottom: 4px; }
+.menu-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 8px; max-width: 620px; width:95%; }
+.menu-buttons button { font-size: 19px; margin: 1px; padding: 6px 12px; min-width: 0; }
+h2 { font-size: clamp(24px, 4vw, 36px); text-align:center; margin: 20px 40px 12px; }
+#login h1 { text-align:center; font-size:clamp(28px,5vw,52px); }
+#login .menu-subtitle { text-align:center; }
+#login label { color:#ffda71; }
+#roulette { gap: 7px; }
+#roulette h2 { margin-bottom: 0; }
+#roulette-wrapper { margin: 8px 0 2px; }
+#roulette-frame { width: min(284px, 59vw); height: min(284px, 59vw); }
+#roulette-wheel { width: min(260px, 54vw); height: min(260px, 54vw); }
+.light-label { color:#fff3ca; font-size:19px; text-align:center; margin:4px; }
+.status-message { color:#ffd700; min-height:24px; text-align:center; font-size:20px; }
+.points-label { font-size:24px; color:#483482; font-weight:bold; height:30px; background:none; }
+#game .battle-area { margin-top:18px; }
+#game #question-area { margin-top:20px; }
+.answer-feedback { color:#ffd700; font-size:20px; margin: 9px auto 0; text-align:center; min-height:25px; }
+.scroll-area { width:90%; max-height:370px; overflow-y:auto; background:rgba(12,3,29,.87); border:2px solid #9b4de0; padding:12px; font-size:20px; color:white; }
+.scroll-area p { margin:6px; }
+.result-message { color:white; background:rgba(12,3,29,.90); border:3px solid gold; border-radius:8px; max-width:90%; padding:20px; font-size:26px; text-align:center; }
+#result { gap:8px; }
+#result button { font-size:23px; }
+#ai-docs .form-panel { max-height: 80%; }
+#ai-docs textarea { width: min(510px,96%); min-height:105px; }
+#ai-preview { max-height:160px; }
+#materials-list { max-height:95px; overflow-y:auto; width:95%; font-size:16px; }
+#teacher-list { font-size:18px; }
+.teacher-item { padding:10px; border-bottom:1px solid #9870a8; }
+.teacher-item button { font-size:17px; padding:4px; min-width:0; }
+.form-panel { max-height:76%; }
+#game-container button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #00f7a2; }
+#online-room #room-code { color:#ffd700; font-size:38px; letter-spacing: 6px; }
+#room-players { font-size:26px; }
+#menu-overlay::-webkit-scrollbar { width:8px; }
+@media(max-width:650px) {
+  #game-container { min-height:670px; height: calc(100dvh - 24px); border-width:3px; }
+  #login-box { width:min(310px,86vw); }
+  .menu-buttons button { font-size:17px; padding: 6px 3px; letter-spacing:0; }
+  .menu-subtitle { font-size:18px; }
+  #question-text { font-size:22px; }
+  .answers button { font-size:17px; padding:6px; }
+  .battle-area { padding:9px; }
+  .sprite { width:70px; }
+  #game #question-area { padding:10px; }
+  .screen button { max-width:94%; }
+  #ai-docs .form-panel { max-height:82%; }
+}
+@media (max-height:650px) and (min-width:651px) {
+  #game-container { min-height:520px; height: min(600px, 96vh); }
+  #menu-overlay { padding:6px; }
+  .menu-buttons button { padding:4px; }
+}
+[hidden] { display: none !important; }
+.result-message { white-space: pre-line; }
+
+/* Adaptación táctil Capacitor sin alterar el diseño pixel art. */
+#server-setup .form-panel { max-width: min(430px,92vw); gap:12px; }
+#server-setup input { width:min(390px,87vw); max-width:100%; }
+#server-setup .hint-text { max-width:390px; }
+body { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+@media(max-width:650px) {
+  #server-setup button { touch-action:manipulation; min-height:48px; }
+  .screen button { touch-action:manipulation; }
+  .form-panel { width:min(94vw, 560px); }
+}

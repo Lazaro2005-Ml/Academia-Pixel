@@ -1,0 +1,9 @@
+ACADEMIA PIXEL v8.2 — SERVIDOR CENTRAL
+
+1) Abrir GUIA_EMPAQUETADO_CENTRAL.md
+2) Publicar primero el servidor HTTPS (carpeta deployment).
+3) En Windows, hacer doble clic en COMPILAR_WINDOWS.bat
+4) Hacer doble clic en COMPILAR_ANDROID.bat y firmar APK desde Android Studio.
+
+Los usuarios finales solo reciben AcademiaPixel-Setup.exe y AcademiaPixel.apk.
+No hay instaladores compilados dentro de este ZIP: el dominio central real aún debe configurarse.

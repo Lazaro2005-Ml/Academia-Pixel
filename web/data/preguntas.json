@@ -1,0 +1,510 @@
+{
+  "Programacion": [
+    {
+      "q": "¿Qué significa 'HTML'?",
+      "options": [
+        "HyperText Markup Language",
+        "HighText Machine Language",
+        "Hyper Transfer Markup Logic",
+        "Home Tool Markup Language"
+      ],
+      "answer": "HyperText Markup Language"
+    },
+    {
+      "q": "¿Cuál de estos es un lenguaje orientado a objetos?",
+      "options": [
+        "HTML",
+        "CSS",
+        "Java",
+        "SQL"
+      ],
+      "answer": "Java"
+    },
+    {
+      "q": "¿Qué hace un bucle 'for'?",
+      "options": [
+        "Declara una variable",
+        "Repite un bloque de código",
+        "Define una función",
+        "Compara dos valores"
+      ],
+      "answer": "Repite un bloque de código"
+    },
+    {
+      "q": "¿Qué es una variable?",
+      "options": [
+        "Un tipo de bucle",
+        "Una función matemática",
+        "Un espacio en memoria para guardar datos",
+        "Un archivo del sistema"
+      ],
+      "answer": "Un espacio en memoria para guardar datos"
+    },
+    {
+      "q": "¿Qué símbolo se usa para comentarios en Python?",
+      "options": [
+        "//",
+        "/* */",
+        "#",
+        "--"
+      ],
+      "answer": "#"
+    },
+    {
+      "q": "¿Cuál es la salida de: print(2 ** 3) en Python?",
+      "options": [
+        "6",
+        "8",
+        "9",
+        "5"
+      ],
+      "answer": "8"
+    },
+    {
+      "q": "¿Qué es la recursividad?",
+      "options": [
+        "Una función que llama a otra",
+        "Una función que se llama a sí misma",
+        "Un tipo de variable",
+        "Un operador lógico"
+      ],
+      "answer": "Una función que se llama a sí misma"
+    },
+    {
+      "q": "¿Qué tipo de dato almacena texto?",
+      "options": [
+        "int",
+        "float",
+        "boolean",
+        "string"
+      ],
+      "answer": "string"
+    },
+    {
+      "q": "¿Qué hace el operador '==' en programación?",
+      "options": [
+        "Asigna un valor",
+        "Compara si dos valores son iguales",
+        "Declara una constante",
+        "Niega una condición"
+      ],
+      "answer": "Compara si dos valores son iguales"
+    },
+    {
+      "q": "¿Qué significa 'IDE'?",
+      "options": [
+        "Integrated Development Environment",
+        "Internal Data Engine",
+        "Interface Design Engine",
+        "Input Display Element"
+      ],
+      "answer": "Integrated Development Environment"
+    }
+  ],
+  "Base de Datos": [
+    {
+      "q": "¿Qué significa SQL?",
+      "options": [
+        "Structured Query Language",
+        "Simple Query Logic",
+        "System Queue Language",
+        "Stored Query List"
+      ],
+      "answer": "Structured Query Language"
+    },
+    {
+      "q": "¿Qué comando se usa para consultar datos en SQL?",
+      "options": [
+        "INSERT",
+        "UPDATE",
+        "SELECT",
+        "DELETE"
+      ],
+      "answer": "SELECT"
+    },
+    {
+      "q": "¿Qué es una clave primaria?",
+      "options": [
+        "Un campo que puede repetirse",
+        "Un campo que identifica cada registro únicamente",
+        "Un índice secundario",
+        "Una relación entre tablas"
+      ],
+      "answer": "Un campo que identifica cada registro únicamente"
+    },
+    {
+      "q": "¿Qué hace 'DELETE' en SQL?",
+      "options": [
+        "Modifica registros",
+        "Elimina registros de una tabla",
+        "Crea una tabla",
+        "Agrega columnas"
+      ],
+      "answer": "Elimina registros de una tabla"
+    },
+    {
+      "q": "¿Cuál de estas es una base de datos NoSQL?",
+      "options": [
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB",
+        "Oracle"
+      ],
+      "answer": "MongoDB"
+    },
+    {
+      "q": "¿Qué es la normalización?",
+      "options": [
+        "Hacer copias de seguridad",
+        "Organizar datos para reducir redundancia",
+        "Encriptar la BD",
+        "Crear índices automáticos"
+      ],
+      "answer": "Organizar datos para reducir redundancia"
+    },
+    {
+      "q": "¿Qué comando agrega nuevos registros?",
+      "options": [
+        "ADD",
+        "INSERT INTO",
+        "UPDATE",
+        "CREATE"
+      ],
+      "answer": "INSERT INTO"
+    },
+    {
+      "q": "¿Qué es un JOIN en SQL?",
+      "options": [
+        "Borrar dos tablas",
+        "Combinar filas de dos o más tablas",
+        "Crear una copia de seguridad",
+        "Definir una clave primaria"
+      ],
+      "answer": "Combinar filas de dos o más tablas"
+    },
+    {
+      "q": "¿Cómo se filtran resultados en SQL?",
+      "options": [
+        "FILTER BY",
+        "HAVING",
+        "WHERE",
+        "LIMIT"
+      ],
+      "answer": "WHERE"
+    },
+    {
+      "q": "¿Qué es una clave foránea?",
+      "options": [
+        "Clave que identifica la tabla",
+        "Campo que referencia la clave primaria de otra tabla",
+        "Índice de búsqueda rápida",
+        "Restricción de unicidad"
+      ],
+      "answer": "Campo que referencia la clave primaria de otra tabla"
+    }
+  ],
+  "Matematicas": [
+    {
+      "q": "¿Cuánto es la derivada de x³ respecto a x?",
+      "options": [
+        "x²",
+        "3x²",
+        "3x",
+        "x³/3"
+      ],
+      "answer": "3x²"
+    },
+    {
+      "q": "¿Cuál es el resultado de resolver x²-5x+6=0?",
+      "options": [
+        "x=2 y x=3",
+        "x=1 y x=6",
+        "x=-2 y x=-3",
+        "x=5 y x=6"
+      ],
+      "answer": "x=2 y x=3"
+    },
+    {
+      "q": "¿Cuánto es log₂(32)?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "16"
+      ],
+      "answer": "5"
+    },
+    {
+      "q": "¿Cuál es el límite de (1+1/n)ⁿ cuando n→∞?",
+      "options": [
+        "0",
+        "1",
+        "e",
+        "∞"
+      ],
+      "answer": "e"
+    },
+    {
+      "q": "¿Cuánto es la integral de 2x dx?",
+      "options": [
+        "x²+C",
+        "2x²+C",
+        "x+C",
+        "2+C"
+      ],
+      "answer": "x²+C"
+    },
+    {
+      "q": "¿Cuál es el determinante de la matriz [[2,3],[1,4]]?",
+      "options": [
+        "5",
+        "8",
+        "11",
+        "-5"
+      ],
+      "answer": "5"
+    },
+    {
+      "q": "¿Cuánto es sen(30°)?",
+      "options": [
+        "1/2",
+        "√2/2",
+        "√3/2",
+        "1"
+      ],
+      "answer": "1/2"
+    },
+    {
+      "q": "Si f(x)=2x+3, ¿cuánto es f⁻¹(7)?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "answer": "2"
+    },
+    {
+      "q": "¿Cuál es la suma de los primeros 10 números naturales?",
+      "options": [
+        "45",
+        "50",
+        "55",
+        "60"
+      ],
+      "answer": "55"
+    },
+    {
+      "q": "¿Cuánto es 2⁵ + 3²?",
+      "options": [
+        "41",
+        "36",
+        "32",
+        "40"
+      ],
+      "answer": "41"
+    }
+  ],
+  "Arq. y Sist. Op.": [
+    {
+      "q": "¿Qué significa CPU?",
+      "options": [
+        "Central Processing Unit",
+        "Computer Power Unit",
+        "Central Program Utility",
+        "Core Processing Unit"
+      ],
+      "answer": "Central Processing Unit"
+    },
+    {
+      "q": "¿Cuál es la unidad básica de almacenamiento?",
+      "options": [
+        "Byte",
+        "Pixel",
+        "Hertz",
+        "Voltio"
+      ],
+      "answer": "Byte"
+    },
+    {
+      "q": "¿Qué componente es la 'memoria de trabajo' temporal?",
+      "options": [
+        "Disco Duro",
+        "RAM",
+        "ROM",
+        "GPU"
+      ],
+      "answer": "RAM"
+    },
+    {
+      "q": "¿Qué es la caché en una CPU?",
+      "options": [
+        "Un tipo de disco duro",
+        "Memoria ultrarrápida dentro del procesador",
+        "Un bus de datos externo",
+        "Tipo de tarjeta gráfica"
+      ],
+      "answer": "Memoria ultrarrápida dentro del procesador"
+    },
+    {
+      "q": "¿Qué es el bus del sistema?",
+      "options": [
+        "Un programa del SO",
+        "Canal que conecta los componentes del hardware",
+        "Un tipo de procesador",
+        "Una interfaz gráfica"
+      ],
+      "answer": "Canal que conecta los componentes del hardware"
+    },
+    {
+      "q": "¿Cuántos bits tiene un byte?",
+      "options": [
+        "4",
+        "8",
+        "16",
+        "32"
+      ],
+      "answer": "8"
+    },
+    {
+      "q": "¿Qué es la arquitectura Von Neumann?",
+      "options": [
+        "Un tipo de red",
+        "Modelo donde CPU y memoria comparten el mismo bus",
+        "Un SO antiguo",
+        "Un protocolo de comunicación"
+      ],
+      "answer": "Modelo donde CPU y memoria comparten el mismo bus"
+    },
+    {
+      "q": "¿Qué significa GPU?",
+      "options": [
+        "General Processing Unit",
+        "Graphics Processing Unit",
+        "Global Power Unit",
+        "Grid Processing Utility"
+      ],
+      "answer": "Graphics Processing Unit"
+    },
+    {
+      "q": "¿Qué es la ROM?",
+      "options": [
+        "Memoria de acceso aleatorio",
+        "Memoria de solo lectura",
+        "Registro de operaciones",
+        "Red de operaciones múltiples"
+      ],
+      "answer": "Memoria de solo lectura"
+    },
+    {
+      "q": "¿Qué hace la ALU dentro de una CPU?",
+      "options": [
+        "Gestiona la RAM",
+        "Controla el bus de datos",
+        "Realiza operaciones aritméticas y lógicas",
+        "Almacena instrucciones del BIOS"
+      ],
+      "answer": "Realiza operaciones aritméticas y lógicas"
+    },
+    {
+      "q": "¿Cuál es la función principal de un SO?",
+      "options": [
+        "Navegar por internet",
+        "Administrar recursos del hardware y software",
+        "Editar documentos",
+        "Ejecutar juegos"
+      ],
+      "answer": "Administrar recursos del hardware y software"
+    },
+    {
+      "q": "¿Cuál de estos es un sistema operativo?",
+      "options": [
+        "Chrome",
+        "Word",
+        "Linux",
+        "Photoshop"
+      ],
+      "answer": "Linux"
+    },
+    {
+      "q": "¿Qué es un proceso en un SO?",
+      "options": [
+        "Un archivo guardado en disco",
+        "Un programa en ejecución",
+        "Una partición del disco",
+        "Un tipo de memoria"
+      ],
+      "answer": "Un programa en ejecución"
+    },
+    {
+      "q": "¿Qué es el kernel de un SO?",
+      "options": [
+        "La interfaz gráfica",
+        "El núcleo central que controla el hardware",
+        "El gestor de archivos",
+        "El explorador web integrado"
+      ],
+      "answer": "El núcleo central que controla el hardware"
+    },
+    {
+      "q": "¿Qué tipo de SO permite múltiples usuarios simultáneos?",
+      "options": [
+        "Monotarea",
+        "Monousuario",
+        "Multiusuario",
+        "Embebido"
+      ],
+      "answer": "Multiusuario"
+    },
+    {
+      "q": "¿Qué es la memoria virtual?",
+      "options": [
+        "RAM adicional en la nube",
+        "Espacio en disco que simula ser RAM",
+        "Caché del procesador",
+        "Memoria dentro de la GPU"
+      ],
+      "answer": "Espacio en disco que simula ser RAM"
+    },
+    {
+      "q": "¿Qué algoritmo asigna CPU al proceso que lleva más tiempo esperando?",
+      "options": [
+        "Round Robin",
+        "FCFS (First Come First Served)",
+        "SJF",
+        "Priority"
+      ],
+      "answer": "FCFS (First Come First Served)"
+    },
+    {
+      "q": "¿Qué es un deadlock?",
+      "options": [
+        "Un virus del sistema",
+        "Cuando procesos se bloquean mutuamente esperando recursos",
+        "Un error de RAM",
+        "Una interrupción del hardware"
+      ],
+      "answer": "Cuando procesos se bloquean mutuamente esperando recursos"
+    },
+    {
+      "q": "¿Qué comando en Linux lista archivos de un directorio?",
+      "options": [
+        "dir",
+        "list",
+        "ls",
+        "show"
+      ],
+      "answer": "ls"
+    },
+    {
+      "q": "¿Qué es un sistema de archivos?",
+      "options": [
+        "Un tipo de red local",
+        "La forma en que el SO organiza datos en el disco",
+        "Un programa de seguridad",
+        "Un protocolo de internet"
+      ],
+      "answer": "La forma en que el SO organiza datos en el disco"
+    }
+  ]
+}

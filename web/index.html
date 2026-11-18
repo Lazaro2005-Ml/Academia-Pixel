@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Academia Pixel — El juego del saber</title>
+<link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+<div id="game-container">
+
+    <div id="server-setup" class="screen">
+        <h1>⚔ ACADEMIA PIXEL ⚔</h1>
+        <h2>📡 Conectar al servidor</h2>
+        <div class="form-panel">
+            <p class="hint-text">Esta aplicación incluye el juego, pero las cuentas, las preguntas, la IA y los duelos online están en un servidor externo. La aplicación se conecta automáticamente al servidor central de Academia Pixel.</p>
+            <label class="light-label" for="native-server-url">Dirección del servidor</label>
+            <input id="native-server-url" class="styled-input" type="url" placeholder="https://juego.ejemplo.com" autocapitalize="none" autocomplete="url" spellcheck="false" />
+            <button id="native-connect-btn">🔌 Conectar</button>
+            <p id="native-connect-msg" class="status-message" role="status"></p>
+            <p class="hint-text">Se requiere una conexión a Internet y que el servidor central esté disponible.</p>
+        </div>
+    </div>
+    <div id="login" class="screen active">
+        <h1>⚔ ACADEMIA PIXEL ⚔</h1>
+        <div class="menu-subtitle">~ El juego del saber ~</div>
+        <div id="login-box">
+            <label for="login-username">Usuario</label><input type="text" id="login-username" maxlength="32" autocomplete="username" />
+            <label for="login-password">Contraseña</label><input type="password" id="login-password" autocomplete="current-password" />
+            <div id="login-msg" role="status"></div>
+            <button id="btn-login">🔑 Iniciar sesión</button>
+            <button id="btn-register">📝 Registrarse</button>
+            <small class="hint-text">Para registrarte: mínimo 3 caracteres en el usuario y 8 en la contraseña.</small>
+        </div>
+        <div id="creditos">Lazarte Sergio Fabricio<br />Herrera Rocío Tatiana<br />Molina Lázaro Exequiel</div>
+    </div>
+
+    <div id="menu" class="screen">
+        <div id="menu-overlay">
+            <h1>⚔ ACADEMIA PIXEL ⚔</h1>
+            <div class="user-bar">👤 <span id="current-user-label">Invitado</span></div>
+            <div class="menu-subtitle">~ El juego del saber ~</div>
+            <div class="menu-buttons">
+                <button id="go-roulette">🎲 Jugar vs Profesor</button>
+                <button id="go-online">🌐 Duelo online 1 vs 1</button>
+                <button id="go-local">🤝 Duelo local</button>
+                <button id="go-tournament">🏆 Torneo local</button>
+                <button id="go-ai">🤖 Generar preguntas</button>
+                <button id="go-ranking">🏅 Ranking</button>
+                <button id="go-history">📜 Mis partidas</button>
+                <button id="go-teacher" hidden>📚 Revisar preguntas</button>
+                <button id="go-options">⚙ Opciones</button>
+                <button id="go-logout">🚪 Salir de la cuenta</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="roulette" class="screen">
+        <button class="close-btn" data-back="menu" aria-label="Volver al menú">✖</button>
+        <h2>★ RULETA DE MATERIAS ★</h2>
+        <label for="roulette-mode" class="light-label">¿Qué materias participan?</label>
+        <select id="roulette-mode" class="styled-select">
+            <option value="base">Materias predefinidas</option>
+            <option value="mine">Mis materias de apuntes</option>
+            <option value="all">Todas las materias</option>
+        </select>
+        <div id="roulette-wrapper"><div id="roulette-frame"><div id="roulette-pointer"></div><div id="roulette-wheel"></div></div></div>
+        <div id="selected-subject-label" role="status"></div>
+        <button id="spin-btn">🎲 GIRAR</button>
+    </div>
+
+    <div id="vsplayer-setup" class="screen">
+        <button class="close-btn" data-back="menu">✖</button>
+        <h2>🤝 DUELO LOCAL</h2>
+        <div class="form-panel">
+            <div class="hint-text">Dos personas se turnan en este dispositivo. Juegan por puntos, no por vidas. Los puntos locales no afectan el ranking global.</div>
+            <div class="form-row"><label for="vs-p1-name">Jugador 1</label><input class="styled-input" id="vs-p1-name" maxlength="32" /></div>
+            <div class="form-row"><label for="vs-p2-name">Jugador 2</label><input class="styled-input" id="vs-p2-name" maxlength="32" /></div>
+            <div class="form-row"><label for="vs-subject-select">Materia</label><select id="vs-subject-select" class="styled-select"></select></div>
+            <button id="start-local">⚔ Comenzar duelo</button>
+        </div>
+    </div>
+
+    <div id="online-setup" class="screen">
+        <button class="close-btn" data-back="menu">✖</button>
+        <h2>🌐 DUELO EN LÍNEA</h2>
+        <div class="form-panel">
+            <div class="hint-text">Dos cuentas desde dispositivos distintos conectados al mismo servidor. El anfitrión elige materia, crea la sala y comparte el código.</div>
+            <div class="form-row"><label for="online-subject">Materia para crear sala</label><select id="online-subject" class="styled-select"></select></div>
+            <button id="create-room">🏠 Crear sala</button>
+            <div class="hint-text">— o ingresá a una sala existente —</div>
+            <div class="form-row"><label for="online-code">Código de sala</label><input class="styled-input" id="online-code" maxlength="6" placeholder="ABC123" autocapitalize="characters" /></div>
+            <button id="join-room">🚪 Unirse</button>
+            <div id="online-status" role="status" class="status-message"></div>
+        </div>
+    </div>
+
+    <div id="online-room" class="screen">
+        <button class="close-btn" id="leave-room">✖</button>
+        <h2>🌐 SALA ONLINE</h2>
+        <div class="form-panel">
+            <p class="light-label">Código de sala: <strong id="room-code"></strong></p>
+            <p class="light-label" id="room-subject"></p>
+            <div id="room-players" class="light-label"></div>
+            <div id="room-status" role="status" class="status-message"></div>
+            <button id="start-online" hidden>⚔ Comenzar partida</button>
+            <button id="copy-code">📋 Copiar código</button>
+        </div>
+    </div>
+
+    <div id="tournament-setup" class="screen">
+        <button class="close-btn" data-back="menu">✖</button>
+        <h2>🏆 TORNEO LOCAL</h2>
+        <div class="form-panel">
+            <div class="form-row"><label for="tournament-count">Cantidad de jugadores</label><select id="tournament-count" class="styled-select"><option value="2">2</option><option value="4" selected>4</option><option value="8">8</option></select></div>
+            <div id="tournament-players-list"></div>
+            <button id="generate-bracket">🏆 Generar torneo</button>
+        </div>
+    </div>
+
+    <div id="tournament-bracket" class="screen">
+        <button class="close-btn" data-back="menu">✖</button>
+        <h2>🏆 CUADRO DEL TORNEO</h2>
+        <div id="champion-banner"></div>
+        <div id="bracket-list"></div>
+        <div id="bracket-current-match"></div>
+        <button id="play-match-btn">⚔ Jugar partido</button>
+        <button id="new-tournament-btn" hidden>🔄 Nuevo torneo</button>
+    </div>
+
+    <div id="ai-docs" class="screen">
+        <button class="close-btn" data-back="menu">✖</button>
+        <h2>🤖 PREGUNTAS DESDE APUNTES</h2>
+        <div class="form-panel">
+            <div class="hint-text">Subí un PDF con texto seleccionable, Word (.docx), TXT o pegá texto. Guardamos el texto extraído en la base de datos.</div>
+            <div class="form-row"><label for="ai-subject">Materia (existente o nueva)</label><input list="subjects-list" id="ai-subject" class="styled-input" placeholder="Ej. Programación" maxlength="60" /><datalist id="subjects-list"></datalist></div>
+            <textarea id="ai-doc-text" class="styled-input" placeholder="O pegá aquí tus apuntes (mínimo 80 caracteres)..."></textarea>
+            <input type="file" id="ai-doc-file" class="styled-input" accept=".txt,.pdf,.docx" />
+            <div class="form-row"><label for="ai-qty">Cantidad de preguntas (3 a 15)</label><input type="number" id="ai-qty" class="styled-input" min="3" max="15" value="6" /></div>
+            <button id="generate-ai">⚡ Guardar y generar preguntas</button>
+            <div id="ai-status" role="status"></div>
+            <div id="ai-preview"></div>
+            <button id="ai-play-btn" hidden>⚔ Jugar con estas preguntas</button>
+            <h3 class="light-label">Mis materiales guardados</h3>
+            <div id="materials-list" class="light-label"></div>
+        </div>
+    </div>
+
+    <div id="scoreboard" class="screen">
+        <button class="close-btn" data-back="menu">✖</button>
+        <h2>🏅 RANKING GLOBAL</h2>
+        <div id="scoreboard-mode-label" class="hint-text">Resultados guardados en SQLite</div>
+        <div id="scoreboard-list" class="scroll-area"></div>
+        <button id="refresh-ranking">🔄 Actualizar</button>
+    </div>
+
+    <div id="history" class="screen">
+        <button class="close-btn" data-back="menu">✖</button>
+        <h2>📜 MIS PARTIDAS</h2>
+        <div id="history-list" class="scroll-area"></div>
+    </div>
+
+    <div id="teacher" class="screen">
+        <button class="close-btn" data-back="menu">✖</button>
+        <h2>📚 VALIDACIÓN DOCENTE</h2>
+        <div id="teacher-list" class="scroll-area"></div>
+        <button id="teacher-refresh">🔄 Actualizar</button>
+    </div>
+
+    <div id="options" class="screen">
+        <button class="close-btn" data-back="menu">✖</button>
+        <h2>⚙ OPCIONES</h2>
+        <button id="change-server-btn" hidden>📡 Cambiar servidor</button>
+        <button id="btn-music">♪ Música: ON</button>
+        <button id="btn-sfx">♫ Efectos: ON</button>
+    </div>
+
+    <div id="game" class="screen">
+        <button class="close-btn" id="leave-game" aria-label="Salir de la partida">✖</button>
+        <div class="battle-area">
+            <div class="character-box">
+                <div id="player-health" class="points-label">0 puntos</div>
+                <div class="sprite-container"><div class="sprite"><img id="personaje" src="images/idle.gif" alt="Jugador" /></div></div>
+                <h3 id="player-name-label">Jugador</h3>
+            </div>
+            <div class="character-box">
+                <div id="boss-health" class="points-label">0 puntos</div>
+                <div class="sprite-container"><div class="sprite" id="boss-sprite"><img id="boss-sprite-imagen" src="images/profesor2.gif" alt="Profesor o rival" /></div></div>
+                <h3 id="boss-name">Profesor</h3><p class="boss-name-label" id="boss-realname"></p>
+            </div>
+        </div>
+        <div id="question-area"><div id="turn-indicator"></div><div id="question-text">Preparando preguntas...</div><div class="answers" id="answers-box"></div><div class="answer-feedback" id="answer-feedback" role="status"></div></div>
+    </div>
+
+    <div id="result" class="screen">
+        <h2>📊 RESULTADO FINAL</h2>
+        <div id="result-message" class="result-message"></div>
+        <button id="result-replay">🔄 Volver a jugar</button>
+        <button id="result-menu">🏠 Volver al menú</button>
+    </div>
+</div>
+<audio id="bgm-menu" src="sounds/menu-music.ogg" loop></audio>
+<audio id="bgm-battle" src="sounds/boss-fight.ogg" loop></audio>
+<audio id="sfx-correct" src="sounds/correct.mp3"></audio>
+<audio id="sfx-wrong" src="sounds/error.mp3"></audio>
+<audio id="sfx-click" src="sounds/click.mp3"></audio>
+<script src="js/runtime-config.js" defer></script>
+<script src="js/game.js" defer></script>
+</body>
+</html>

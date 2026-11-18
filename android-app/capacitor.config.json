@@ -1,0 +1,9 @@
+{
+  "appId": "com.academiapixel.juego",
+  "appName": "Academia Pixel",
+  "webDir": "www",
+  "server": {
+    "hostname": "localhost",
+    "androidScheme": "http"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "academia-pixel-desktop",
+  "productName": "Academia Pixel",
+  "version": "8.2.0",
+  "private": true,
+  "description": "Cliente Windows de Academia Pixel conectado a un servidor central HTTPS",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis --x64"
+  },
+  "devDependencies": {
+    "electron": "45.3.4",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "edu.academiapixel.desktop",
+    "productName": "Academia Pixel",
+    "asar": true,
+    "directories": {
+      "output": "../dist-windows"
+    },
+    "files": [
+      "main.cjs",
+      "server-config.json",
+      "loading.html",
+      "error.html",
+      "icons/icon.ico",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icons/icon.ico",
+      "artifactName": "AcademiaPixel-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}
